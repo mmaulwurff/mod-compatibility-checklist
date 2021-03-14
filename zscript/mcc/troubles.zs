@@ -25,6 +25,17 @@ class mcc_Troubles : EventHandler
     string command = event.name;
 
     if (command == "mcc-make-player-null") makePlayerNull();
+    if (command == "mcc-make-spawned-thing-null") makeSpawnedThingNull();
+  }
+
+  override
+  void WorldThingSpawned(WorldEvent event)
+  {
+    if (mIsScheduledSpawnedThingIsNull)
+    {
+      mIsScheduledSpawnedThingIsNull = false;
+      event.thing.destroy();
+    }
   }
 
 // private: ////////////////////////////////////////////////////////////////////////////////////////
@@ -38,5 +49,13 @@ class mcc_Troubles : EventHandler
     //players[consolePlayer].mo = NULL;
     // just crashes GZDoom. Don't ever do that!
   }
+
+  private
+  void makeSpawnedThingNull()
+  {
+    mIsScheduledSpawnedThingIsNull = true;
+  }
+
+  private bool mIsScheduledSpawnedThingIsNull;
 
 } // class mcc_Troubles

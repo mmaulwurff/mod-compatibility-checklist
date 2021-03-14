@@ -1,7 +1,7 @@
 gameinfo
 {
 
-  AddEventHandlers = "mcc_Logger"
-                   , "mcc_Troubles"
+  AddEventHandlers = "mcc_Troubles"
+                   , "mcc_Logger"
 
 } // gameinfo

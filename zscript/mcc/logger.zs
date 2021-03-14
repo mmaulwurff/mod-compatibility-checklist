@@ -23,78 +23,91 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldLoaded");
     checkPlayerIsNull();
+    // checkWorldEventThingIsNull(event); // Thing is NULL here, don't check.
   }
 
   override void WorldUnloaded(WorldEvent event)
   {
     initFunction("WorldUnloaded");
     checkPlayerIsNull();
+    // checkWorldEventThingIsNull(event); // Thing is NULL here, don't check.
   }
 
   override void WorldThingSpawned(WorldEvent event)
   {
     initFunction("WorldThingSpawned");
     checkPlayerIsNull();
+    checkWorldEventThingIsNull(event);
   }
 
   override void WorldThingDied(WorldEvent event)
   {
     initFunction("WorldThingDied");
     checkPlayerIsNull();
+    checkWorldEventThingIsNull(event);
   }
 
   override void WorldThingGround(WorldEvent event)
   {
     initFunction("WorldThingGround");
     checkPlayerIsNull();
+    checkWorldEventThingIsNull(event);
   }
 
   override void WorldThingRevived(WorldEvent event)
   {
     initFunction("WorldThingRevived");
     checkPlayerIsNull();
+    checkWorldEventThingIsNull(event);
   }
 
   override void WorldThingDamaged(WorldEvent event)
   {
     initFunction("WorldThingDamaged");
     checkPlayerIsNull();
+    checkWorldEventThingIsNull(event);
   }
 
   override void WorldThingDestroyed(WorldEvent event)
   {
     initFunction("WorldThingDestroyed");
     // checkPlayerIsNull(); // Player can be null here, don't check.
+    checkWorldEventThingIsNull(event);
   }
 
   override void WorldLinePreActivated(WorldEvent event)
   {
     initFunction("WorldLinePreActivated");
     checkPlayerIsNull();
+    checkWorldEventThingIsNull(event);
   }
 
   override void WorldLineActivated(WorldEvent event)
   {
     initFunction("WorldLineActivated");
     checkPlayerIsNull();
+    checkWorldEventThingIsNull(event);
   }
 
   override void WorldSectorDamaged(WorldEvent event)
   {
     initFunction("WorldSectorDamaged");
     checkPlayerIsNull();
+    // checkWorldEventThingIsNull(event); // Thing is NULL here, don't check (m8f: not sure).
   }
 
   override void WorldLineDamaged(WorldEvent event)
   {
     initFunction("WorldLineDamaged");
     checkPlayerIsNull();
+    // checkWorldEventThingIsNull(event); // Thing is NULL here, don't check (m8f: not sure).
   }
 
   override void WorldLightning(WorldEvent event)
   {
     initFunction("WorldLightning");
     checkPlayerIsNull();
+    // checkWorldEventThingIsNull(event); // Thing is NULL here, don't check (m8f: not sure).
   }
 
   override void WorldTick()
@@ -220,6 +233,15 @@ class mcc_Logger : EventHandler
     {
       mIsPlayerNullLogged = true;
       mcc_Log.error(mFunctionName .. ": Player is NULL");
+    }
+  }
+
+  private play
+  void checkWorldEventThingIsNull(WorldEvent event)
+  {
+    if (event.thing == NULL)
+    {
+      mcc_Log.error(mFunctionName .. ": WorldEvent event.thing is NULL");
     }
   }
 

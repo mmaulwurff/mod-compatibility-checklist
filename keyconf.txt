@@ -1,1 +1,2 @@
 Alias mcc-make-player-null "netevent mcc-make-player-null"
+Alias mcc-make-spawned-thing-null "netevent mcc-make-spawned-thing-null"
