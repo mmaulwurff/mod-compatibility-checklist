@@ -1,0 +1,7 @@
+gameinfo
+{
+
+  AddEventHandlers = "mcc_Logger"
+                   , "mcc_Troubles"
+
+} // gameinfo
