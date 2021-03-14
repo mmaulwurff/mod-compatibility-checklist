@@ -1,5 +1,6 @@
-Alias mcc-make-player-null "netevent mcc-make-player-null"
-Alias mcc-make-spawned-thing-null "netevent mcc-make-spawned-thing-null"
-Alias mcc-make-player-weapon-null "netevent mcc-make-player-weapon-null"
+Alias mcc-critical-make-player-null "netevent mcc-make-player-null"
 
-Alias mcc-spawn-with-no-tags "summon mcc_WeaponWithNoTag; summon mcc_EnemyWithNoTag"
+Alias mcc-important-make-spawned-thing-null "netevent mcc-make-spawned-thing-null; summon mcc_Spawnable"
+Alias mcc-important-make-player-weapon-null "netevent mcc-make-player-weapon-null"
+
+Alias mcc-cosmetic-spawn-with-no-tags "summon mcc_WeaponWithNoTag; summon mcc_EnemyWithNoTag"

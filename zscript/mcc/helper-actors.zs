@@ -38,3 +38,8 @@ class mcc_EnemyWithNoTag : Actor
 
   mixin mcc_Volatile;
 }
+
+class mcc_Spawnable : Actor
+{
+  mixin mcc_Volatile;
+}
