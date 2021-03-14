@@ -20,7 +20,13 @@ class mcc_Troubles : EventHandler
 {
 
   override
-  void networkProcess(ConsoleEvent event)
+  void OnRegister()
+  {
+    SetOrder(int.min);
+  }
+
+  override
+  void NetworkProcess(ConsoleEvent event)
   {
     string command = event.name;
 

@@ -19,6 +19,12 @@
 class mcc_Logger : EventHandler
 {
 
+  override
+  void OnRegister()
+  {
+    SetOrder(int.max);
+  }
+
   override void WorldLoaded(WorldEvent event)
   {
     initFunction("WorldLoaded");
