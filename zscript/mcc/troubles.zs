@@ -19,4 +19,24 @@
 class mcc_Troubles : EventHandler
 {
 
+  override
+  void networkProcess(ConsoleEvent event)
+  {
+    string command = event.name;
+
+    if (command == "mcc-make-player-null") makePlayerNull();
+  }
+
+// private: ////////////////////////////////////////////////////////////////////////////////////////
+
+  private
+  void makePlayerNull()
+  {
+    players[consolePlayer].mo.destroy();
+
+    // Interestingly, the following line
+    //players[consolePlayer].mo = NULL;
+    // just crashes GZDoom. Don't ever do that!
+  }
+
 } // class mcc_Troubles

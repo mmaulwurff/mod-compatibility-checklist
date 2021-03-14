@@ -1,0 +1,1 @@
+Alias mcc-make-player-null "netevent mcc-make-player-null"
