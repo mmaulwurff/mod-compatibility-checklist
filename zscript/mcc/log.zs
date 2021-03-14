@@ -28,7 +28,7 @@ class mcc_Log
   static
   void notice(string s)
   {
-    Console.printf("[NOTICE] %s: %s", MOD_NAME, StringTable.localize(s, false));
+    Console.printf("[NOTICE] %s: %s.", MOD_NAME, StringTable.localize(s, false));
   }
 
   static

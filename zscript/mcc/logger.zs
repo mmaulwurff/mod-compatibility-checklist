@@ -38,6 +38,7 @@ class mcc_Logger : EventHandler
     initFunction("WorldThingSpawned");
     checkPlayerIsNull();
     checkWorldEventThingIsNull(event);
+    checkWorldEventThingTag(event);
   }
 
   override void WorldThingDied(WorldEvent event)
@@ -223,9 +224,6 @@ class mcc_Logger : EventHandler
     //console.printf(mFunctionName);
   }
 
-  /**
-   * MCC2
-   */
   private play
   void checkPlayerIsNull() const
   {
@@ -242,6 +240,18 @@ class mcc_Logger : EventHandler
     if (event.thing == NULL)
     {
       mcc_Log.error(mFunctionName .. ": WorldEvent event.thing is NULL");
+    }
+  }
+
+  private
+  void checkWorldEventThingTag(WorldEvent event)
+  {
+    Actor thing = event.thing;
+    if (thing == NULL) return;
+
+    if ((thing.bIsMonster || thing is "Weapon") && thing.getTag(".") == ".")
+    {
+      mcc_Log.notice("Class " .. thing.getClassName() .. " is missing a tag");
     }
   }
 
