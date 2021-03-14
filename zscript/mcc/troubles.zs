@@ -26,6 +26,7 @@ class mcc_Troubles : EventHandler
 
     if (command == "mcc-make-player-null") makePlayerNull();
     if (command == "mcc-make-spawned-thing-null") makeSpawnedThingNull();
+    if (command == "mcc-make-player-weapon-null") makePlayerWeaponNull();
   }
 
   override
@@ -54,6 +55,12 @@ class mcc_Troubles : EventHandler
   void makeSpawnedThingNull()
   {
     mIsScheduledSpawnedThingIsNull = true;
+  }
+
+  private
+  void makePlayerWeaponNull()
+  {
+    players[consolePlayer].readyWeapon = NULL;
   }
 
   private bool mIsScheduledSpawnedThingIsNull;

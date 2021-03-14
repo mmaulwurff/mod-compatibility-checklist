@@ -23,6 +23,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldLoaded");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     // checkWorldEventThingIsNull(event); // Thing is NULL here, don't check.
   }
 
@@ -30,6 +31,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldUnloaded");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     // checkWorldEventThingIsNull(event); // Thing is NULL here, don't check.
   }
 
@@ -37,6 +39,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldThingSpawned");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     checkWorldEventThingIsNull(event);
     checkWorldEventThingTag(event);
   }
@@ -45,6 +48,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldThingDied");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     checkWorldEventThingIsNull(event);
   }
 
@@ -52,6 +56,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldThingGround");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     checkWorldEventThingIsNull(event);
   }
 
@@ -59,6 +64,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldThingRevived");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     checkWorldEventThingIsNull(event);
   }
 
@@ -66,6 +72,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldThingDamaged");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     checkWorldEventThingIsNull(event);
   }
 
@@ -80,6 +87,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldLinePreActivated");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     checkWorldEventThingIsNull(event);
   }
 
@@ -87,6 +95,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldLineActivated");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     checkWorldEventThingIsNull(event);
   }
 
@@ -94,6 +103,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldSectorDamaged");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     // checkWorldEventThingIsNull(event); // Thing is NULL here, don't check (m8f: not sure).
   }
 
@@ -101,6 +111,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldLineDamaged");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     // checkWorldEventThingIsNull(event); // Thing is NULL here, don't check (m8f: not sure).
   }
 
@@ -108,6 +119,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldLightning");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     // checkWorldEventThingIsNull(event); // Thing is NULL here, don't check (m8f: not sure).
   }
 
@@ -115,42 +127,49 @@ class mcc_Logger : EventHandler
   {
     initFunction("WorldTick");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void PlayerEntered(PlayerEvent event)
   {
     initFunction("PlayerEntered");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void PlayerSpawned(PlayerEvent event)
   {
     initFunction("PlayerSpawned");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void PlayerRespawned(PlayerEvent event)
   {
     initFunction("PlayerRespawned");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void PlayerDied(PlayerEvent event)
   {
     initFunction("PlayerDied");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void PlayerDisconnected(PlayerEvent event)
   {
     initFunction("PlayerDisconnected");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override bool UiProcess(UiEvent event)
   {
     initFunction("UiProcess");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     return false;
   }
 
@@ -158,6 +177,7 @@ class mcc_Logger : EventHandler
   {
     initFunction("InputProcess");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
     return false;
   }
 
@@ -165,24 +185,28 @@ class mcc_Logger : EventHandler
   {
     initFunction("ConsoleProcess");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void NetworkProcess(ConsoleEvent event)
   {
     initFunction("NetworkProcess");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void CheckReplacement(ReplaceEvent event)
   {
     initFunction("CheckReplacement");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void CheckReplacee(ReplacedEvent event)
   {
     initFunction("CheckReplacee");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void NewGame()
@@ -195,24 +219,28 @@ class mcc_Logger : EventHandler
   {
     initFunction("RenderOverlay");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void RenderUnderlay(RenderEvent event)
   {
     initFunction("RenderUnderlay");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void UiTick()
   {
     initFunction("UiTick");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
   override void PostUiTick()
   {
     initFunction("PostUiTick");
     checkPlayerIsNull();
+    checkPlayerWeaponIsNull();
   }
 
 // private: ////////////////////////////////////////////////////////////////////////////////////////
@@ -255,7 +283,18 @@ class mcc_Logger : EventHandler
     }
   }
 
+  private play
+  void checkPlayerWeaponIsNull() const
+  {
+    if (players[consolePlayer].readyWeapon == NULL && !mIsPlayerWeaponNullLogged)
+    {
+      mIsPlayerWeaponNullLogged = true;
+      mcc_Log.error(mFunctionName .. ": Player weapon is NULL");
+    }
+  }
+
   private string mFunctionName;
   private bool mIsPlayerNullLogged;
+  private bool mIsPlayerWeaponNullLogged;
 
 } // class mcc_Logger

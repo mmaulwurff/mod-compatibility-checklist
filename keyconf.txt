@@ -1,4 +1,5 @@
 Alias mcc-make-player-null "netevent mcc-make-player-null"
 Alias mcc-make-spawned-thing-null "netevent mcc-make-spawned-thing-null"
+Alias mcc-make-player-weapon-null "netevent mcc-make-player-weapon-null"
 
 Alias mcc-spawn-with-no-tags "summon mcc_WeaponWithNoTag; summon mcc_EnemyWithNoTag"
