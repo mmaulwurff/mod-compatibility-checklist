@@ -19,14 +19,15 @@
 class mcc_Logger : EventHandler
 {
 
-  override
-  void OnRegister()
+  override void OnRegister()
   {
     SetOrder(int.max);
   }
 
   override void WorldLoaded(WorldEvent event)
   {
+    checkOtherEventHandlers();
+
     initFunction("WorldLoaded");
     checkPlayerIsNull();
     checkPlayerWeaponIsNull();
@@ -299,8 +300,65 @@ class mcc_Logger : EventHandler
     }
   }
 
+  private
+  void checkOtherEventHandlers()
+  {
+    // The order in which classes are defined (in code), which is used here for
+    // isLoggerFound and isTroublesFound, is not always the same as the event
+    // handler run order, which is defined in mapinfo. But if the events
+    // handlers are in different mods, it's the same.
+
+    if (mAreOtherEventHandlersChecked) return;
+
+    mAreOtherEventHandlersChecked = true;
+
+    bool isLoggerFound = false;
+    bool isTroublesFound = false;
+
+    uint nClasses = AllClasses.size();
+    for (uint i = 0; i < nClasses; ++i)
+    {
+      class aClass = AllClasses[i];
+
+      if (aClass is "mcc_Logger") isLoggerFound = true;
+      if (aClass is "mcc_Troubles") isTroublesFound = true;
+
+      if (!(aClass is "StaticEventHandler")
+          || aClass == "StaticEventHandler"
+          || aClass == "EventHandler"
+          || aClass == "mcc_Logger"
+          || aClass == "mcc_Troubles") continue;
+
+      string eventHandlerName = aClass.getClassName();
+      class<EventHandler> eventHandlerClass = eventHandlerName;
+      let instance = (aClass is "EventHandler")
+        ? EventHandler.find(eventHandlerClass)
+        : StaticEventHandler.find(eventHandlerClass);
+
+      if (instance == NULL) continue;
+
+      int contenderOrder = instance.order;
+      if (contenderOrder == int.max && isLoggerFound)
+      {
+        mcc_Log.notice(string.format("Can't inspect events from %s. Load MCC after %s"
+                                    , eventHandlerName
+                                    , eventHandlerName
+                                    ));
+      }
+
+      if (contenderOrder == int.min && !isTroublesFound)
+      {
+        mcc_Log.notice(string.format("Simulated troubles won't affect %s. Load MCC before %s"
+                                    , eventHandlerName
+                                    , eventHandlerName
+                                    ));
+      }
+    }
+  }
+
   private string mFunctionName;
   private bool mIsPlayerNullLogged;
   private bool mIsPlayerWeaponNullLogged;
+  private bool mAreOtherEventHandlersChecked;
 
 } // class mcc_Logger
