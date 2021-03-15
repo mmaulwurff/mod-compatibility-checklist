@@ -335,7 +335,13 @@ class mcc_Logger : EventHandler
         ? EventHandler.find(eventHandlerClass)
         : StaticEventHandler.find(eventHandlerClass);
 
-      if (instance == NULL) continue;
+      if (instance == NULL)
+      {
+        mcc_Log.notice(string.format("Event handler %s is defined but not activated in MAPINFO"
+                                    , eventHandlerName
+                                    ));
+        continue;
+      }
 
       int contenderOrder = instance.order;
       if (contenderOrder == int.max && isLoggerFound)
