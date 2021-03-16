@@ -15,6 +15,7 @@ testing purposes.
 - if thing in WorldEvent becomes NULL;
 - if an enemy or a weapon doesn't have a tag;
 - if player's current weapon is NULL;
+- if player has no weapons;
 - if an event handler is defined but not used.
 
 Logger is set up so it catches suspicious events from almost all other event
@@ -26,6 +27,7 @@ load order is displayed.
 - Critical: make player NULL (even base game doesn't survive this event);
 - Important: make a WorldThingSpawned WorldEvent that has NULL thing;
 - Important: make player's current weapon NULL;
+- Important: take away all weapons from the player;
 - A command to call all Important events simultaneously (for faster testing);
 - Cosmetic: spawn a weapon and a monster with no tags (this event is mostly used
   to test MCC itself).

@@ -30,9 +30,10 @@ class mcc_Troubles : EventHandler
   {
     string command = event.name;
 
-    if (command == "mcc-make-player-null") makePlayerNull();
-    if (command == "mcc-make-spawned-thing-null") makeSpawnedThingNull();
-    if (command == "mcc-make-player-weapon-null") makePlayerWeaponNull();
+    if      (command == "mcc-make-player-null") makePlayerNull();
+    else if (command == "mcc-make-spawned-thing-null") makeSpawnedThingNull();
+    else if (command == "mcc-make-player-weapon-null") makePlayerWeaponNull();
+    else if (command == "mcc-make-no-weapons") makeNoWeapons();
   }
 
   override
@@ -67,6 +68,17 @@ class mcc_Troubles : EventHandler
   void makePlayerWeaponNull()
   {
     players[consolePlayer].readyWeapon = NULL;
+  }
+
+  private
+  void makeNoWeapons()
+  {
+    let player = players[consolePlayer].mo;
+    Inventory weapon;
+    while (weapon = player.findInventory("Weapon", true))
+    {
+      weapon.depleteOrDestroy();
+    }
   }
 
   private bool mIsScheduledSpawnedThingIsNull;
