@@ -369,7 +369,7 @@ class mcc_Logger : EventHandler
           || aClass == "mcc_Troubles") continue;
 
       string eventHandlerName = aClass.getClassName();
-      class<EventHandler> eventHandlerClass = eventHandlerName;
+      class<StaticEventHandler> eventHandlerClass = eventHandlerName;
       let instance = (aClass is "EventHandler")
         ? EventHandler.find(eventHandlerClass)
         : StaticEventHandler.find(eventHandlerClass);
