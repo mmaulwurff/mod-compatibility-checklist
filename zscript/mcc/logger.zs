@@ -332,6 +332,8 @@ class mcc_Logger : EventHandler
   void checkPlayerHasNoWeapons() const
   {
     let player = players[consolePlayer].mo;
+    if (player == NULL) return;
+
     if (player.findInventory("Weapon", true) == NULL && !mIsPlayerHasNoWeaponsLogged)
     {
       mIsPlayerHasNoWeaponsLogged = true;
