@@ -227,17 +227,13 @@ class mcc_Logger : EventHandler
   override void CheckReplacement(ReplaceEvent event)
   {
     initFunction("CheckReplacement");
-    checkPlayerIsNull();
-    checkPlayerWeaponIsNull();
-    checkPlayerHasNoWeapons();
+    // do not check player here - this function can be called when there is no player.
   }
 
   override void CheckReplacee(ReplacedEvent event)
   {
     initFunction("CheckReplacee");
-    checkPlayerIsNull();
-    checkPlayerWeaponIsNull();
-    checkPlayerHasNoWeapons();
+    // do not check player here - this function can be called when there is no player.
   }
 
   override void NewGame()
