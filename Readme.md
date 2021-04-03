@@ -7,6 +7,8 @@ Mod Compatibility Checklist (MCC) is a GZDoom add-on that is designed to:
 MCC consists of two parts: logging suspicious events and simulating them for
 testing purposes.
 
+This add-on is a part of [m8f's doctor's bag](https://mmaulwurff.github.io/pages/doctors-bag).
+
 ## Features
 
 ### Logging
