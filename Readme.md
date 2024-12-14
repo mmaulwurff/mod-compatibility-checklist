@@ -1,3 +1,5 @@
+Archived: moved to DoomDoctor in https://github.com/mmaulwurff/doom-toolbox
+
 # Mod Compatibility Checklist
 
 Mod Compatibility Checklist (MCC) is a GZDoom add-on that is designed to:
